@@ -33,7 +33,7 @@ namespace CyclicalDependency
                 .AddHttpRequestInterceptor((context, requestExecutor, requestBuilder, cancellationToken) =>
                 {
                     // This is so that HotChocolate can resolve services registered with Simple Injector
-                    context.RequestServices = Container;
+                    context.RequestServices = new CustomServiceProvider(Container, context.RequestServices);
                     return new ValueTask();
                 });
 
